@@ -1,59 +1,53 @@
 <template>
   <div class="home">
-    <div class="echarts-wrapper">
-  <vue-echarts :option="options"></vue-echarts>
+    <div class="datav-wrapper">
+      <!-- <vue-echarts :option="options"></vue-echarts> -->
+      <top-header></top-header>
+      <sales-bar></sales-bar>
+      <sales-line></sales-line>
     </div>
-  
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import TopHeader from "@/components/TopHeader/index";
+import SalesBar from "@/components/SalesBar/index";
+import SalesLine from "@/components/SalesLine/index";
+
 export default {
-  name: 'Home',
-  components: {},
-  data () {
+  name: "Home",
+  components: { TopHeader, SalesBar, SalesLine },
+  data() {
     return {
       options: {}
-    }
+    };
   },
-  mounted () {
-    this.getOptions() 
+  mounted() {
+    this.getOptions();
   },
   methods: {
     getOptions() {
-      this.options = {
-      title: {
-        text: 'ECharts 入门示例'
-      },
-      tooltip: {},
-      legend: {
-        data: ['销量']
-      },
-      xAxis: {
-        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-      }, 
-      yAxis: {}, 
-      series: [
-        {
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
-        }
-      ]
+      this.options = {};
     }
-    }
-  },
-}
+  }
+};
 </script>
 <style lang="scss" scoped>
 .home {
-  width: 100%;
-  height: 100%; 
-  font-size: 20px;
-  .echarts-wrapper {
-     width: 100%;
-  height: 500px; 
+  position: relative;
+  height: 100%;
+
+  .datav-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1336px;
+    z-index: 1;
+    background-image: url("../assets/44b2ad11c37339db11f8ca5d59c5b31c.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
   .echarts {
     width: 100%;

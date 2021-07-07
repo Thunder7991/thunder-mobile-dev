@@ -2,9 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import './styles/reset.css'
 import * as echarts from 'echarts'
 import VueEcharts from 'vue-echarts'
+import './styles/reset.css'
 
 Vue.prototype.$echarts = echarts
 Vue.component('vue-echarts', VueEcharts)
