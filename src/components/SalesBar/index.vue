@@ -14,83 +14,93 @@ export default {
       options: {}
     };
   },
-
+  props: {
+    data: Object
+  },
+  watch: {
+    data: {
+      handler: function(val, oldVal) {
+        this.getOptions()
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   mounted() {
-    this.getOptions();
   },
   methods: {
     getOptions() {
-      const axis = ["南京", "深圳", "杭州", "上海", "北京", "全国"];
-      const data1 = [68023, 73489, 79034, 204970, 231744, 630230];
-      const data2 = [49325, 53438, 61000, 221594, 234141, 681807];
-      this.options = {
-        title: {
-          text: "今日销售额:253,089.10元",
-          textStyle: {
-            color: "#fff"
+      if (this.data && this.data.salesBar) {
+        const { axis, data1, data2 } = this.data.salesBar;
+        this.options = {
+          title: {
+            text: "今日销售额:253,089.10元",
+            textStyle: {
+              color: "#fff"
+            },
+            top: 10,
+            left: 10
           },
-          top: 10,
-          left: 10
-        },
-        grid: {
-          left: "3%",
-          right: "5%",
-          bottom: "3%",
-          containLabel: true
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "shadow"
-          }
-        },
-        xAxis: {
-          type: "value",
-          axisLabel: {
-            show: false
+          grid: {
+            left: "3%",
+            right: "5%",
+            bottom: "3%",
+            containLabel: true
           },
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          splitLine: {
-            lineStyle: {
-              color: "rgba(255,255,255,.1)"
-            }
-          }
-        },
-        yAxis: {
-          type: "category",
-          data: axis,
-          axisLabel: {
-            show: true,
-            color: "#fff"
-          },
-          axisTick: {
-            show: false
-          }
-        },
-        series: [
-          {
-            name: "平台流量",
-            type: "bar",
-            data: data1,
-            itemStyle: {
-              color: "#c92a2a"
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow"
             }
           },
-          {
-            name: "外部流量",
-            type: "bar",
-            data: data2,
-            itemStyle: {
-              color: "rgb(0,140,217)"
+          xAxis: {
+            type: "value",
+            axisLabel: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            splitLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,.1)"
+              }
             }
-          }
-        ]
-      };
+          },
+          yAxis: {
+            type: "category",
+            data: axis,
+            axisLabel: {
+              show: true,
+              color: "#fff"
+            },
+            axisTick: {
+              show: false
+            }
+          },
+          series: [
+            {
+              name: "平台流量",
+              type: "bar",
+              data: data1,
+              itemStyle: {
+                color: "#c92a2a"
+              }
+            },
+            {
+              name: "外部流量",
+              type: "bar",
+              data: data2,
+              itemStyle: {
+                color: "rgb(0,140,217)"
+              }
+            }
+          ]
+        };
+      }
     }
   }
 };
